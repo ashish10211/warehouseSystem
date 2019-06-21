@@ -1,0 +1,21 @@
+cricket bat:: 1
+cricket ball:: 2
+ ===== Total amount is 35
+cricket bat:: 2
+cricket ball:: 2
+ ===== Total amount is 50
+ ===== Total amount is 25
+cricket bat:: 6
+ ===== Total amount is 89
+cricket wickets:: 2
+ ===== Total amount is 35
+cricket ball:: 7
+ ===== Total amount is 64
+cricket wickets:: 2
+ ===== Total amount is 35
+cricket ball:: 6
+ ===== Total amount is 54
+cricket ball:: 2
+ ===== Total amount is 15
+cricket ball:: 6
+ ===== Total amount is 53

@@ -1,0 +1,1281 @@
+PRODUCTS CLASS
+
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Products {
+	String pname;
+	int pprice;
+	int pid;
+	int pstock;
+	String sportsType;
+    
+public Products(String cname, int cprice, int cid ,String csportsType,int stock) {
+	// TODO Auto-generated constructor stub
+	pname=cname;
+	pprice=cprice;
+	pid=cid;
+	sportsType=csportsType;
+	pstock=stock;
+}
+Scanner sc=new Scanner(System.in);
+
+	public String getProductName(){
+		return this.pname;
+		
+	}
+	public int getProductID(){
+		return this.pid;
+	}
+	public int getProductPrice(){
+		return this.pprice;
+	}
+	public int getStock(){
+		return this.pstock;
+	}
+	public void setProductPrice(int price){
+		this.pprice=price;
+	}
+	public void setStock(int number){
+		this.pstock=pstock+number;
+	}
+	
+}
+
+
+
+
+DATABASE CLASS
+
+
+
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.Writer;
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
+
+public class Database {
+	public static void main(String[] args){
+	}
+	
+	public static List<Custselec> cs;
+	public static int ab;
+	public static int transID=1;
+	public static int totalsum = 0;
+	public static HashMap<Integer,Custselec> map=new HashMap<Integer,Custselec>();
+	ArrayList<Products> arraylist=new ArrayList<Products>();
+	public ArrayList<Database> arraylist2=new ArrayList<Database>();
+	String dname;
+	int dprice;
+	int dtotal;
+	int did;
+	int disc= 0;
+	int qunatityy =0;
+	int i =0;
+	public Sports sp=new Sports();
+	ArrayList<Customer> arraylist1=new ArrayList<Customer>();
+ArrayList<Supplier> arraylist3=new ArrayList<Supplier>();
+   Scanner sc=new Scanner(System.in);
+   
+	public ArrayList<Products> getProductList(){
+		
+		Products cricketbat=new Products("cricket bat",15,1,"cric",10);
+		Products cricketball=new Products("cricket ball",10,2,"cric",8);
+		Products CricketWickets=new Products("cricket wickets",20,3,"cric",8);
+		Products CricketKneePads=new Products("cricket kneepads",18,4,"cric",9);
+		Products CricketGloves=new Products("cricket gloves",17,5,"cric",7);
+		Products football=new Products("football",17,6,"arf",11);
+		Products footshoe=new Products("footshoe",25,7,"arf",17);
+		Products footjersy=new Products("footjersy",22,8,"arf",18);
+		Products footstockings =new Products("foot stockings",13,9,"arf",19);
+		Products footGloves =new Products("foot gloves",35,10,"arf",12);
+		Products swimmingsuit =new Products("swim suit",25,11,"swim",21);
+		Products swimminggoggles =new Products("swim goggles",17,12,"swim",25);
+		Products swimmingpads =new Products("swimpads",27,13,"swim",24);
+		Products swimmingcap =new Products("swimcap",18,14,"swim",27);
+		Products swimmingwatch =new Products("swimwatch",50,15,"swim",30);
+		Products netballshorts =new Products("netshorts",25,16,"net",24);
+		Products netballjersy =new Products("netjersy",29,17,"net",26);
+		Products netballshoe =new Products("netshoe",20,18,"net",25);
+		Products netballgoggles =new Products("netgoggles",20,19,"net",27);
+		Products netballcap =new Products("netcap",25,20,"net",25);
+		Products hockeystick =new Products("hockeystick",25,21,"hockey",13);
+		Products hockeyball =new Products("hockeyball",28,22,"hockey",12);
+		Products hockeyshoe =new Products("hockeyshoe",14,23,"hockey",9);
+		Products hockeygloves =new Products("hockeygloves",33,24,"hockey",20);
+		Products hockeyjersy =new Products("hockeyjersy",37,25,"hockey",12);
+
+	
+		arraylist.add(cricketbat);
+		arraylist.add(cricketball);
+		arraylist.add(CricketWickets);
+		arraylist.add(CricketKneePads);
+		arraylist.add(CricketGloves);
+		arraylist.add(football);
+		arraylist.add(footshoe);
+		arraylist.add(footjersy);
+		arraylist.add(footstockings);
+		arraylist.add(footGloves);
+		arraylist.add(swimmingsuit);
+		arraylist.add(swimminggoggles);
+		arraylist.add(swimmingpads);
+		arraylist.add(swimmingcap);
+		arraylist.add(swimmingwatch);
+		arraylist.add(netballshoe);
+		arraylist.add(netballshorts);
+		arraylist.add(netballjersy);
+		arraylist.add(netballgoggles);
+		arraylist.add(netballcap);
+		arraylist.add(hockeystick);
+		arraylist.add(hockeyball);
+		arraylist.add(hockeyshoe);
+		arraylist.add(hockeygloves);
+		arraylist.add(hockeyjersy);
+		
+	     return arraylist;
+		
+	}
+	
+	public void prodDisplay() {
+		for(int i=0;i<arraylist.size();i++){
+			System.out.print(i+1+"] ");
+		System.out.println(arraylist.get(i).getProductName()+" :: $"+arraylist.get(i).getProductPrice());	
+		}
+	} 
+	public void cricDisplay(){
+		for(int i=0;i<5;i++){
+			System.out.print(i+1+"] ");
+		System.out.println(arraylist.get(i).getProductName()+" :: $"+arraylist.get(i).getProductPrice());	
+		}
+	}
+	public void footDisplay(){
+		for(int i=5;i<10;i++){
+			System.out.print(i+1+"]  ");
+		System.out.println(arraylist.get(i).getProductName()+" :: $"+arraylist.get(i).getProductPrice());	
+		}
+	}
+	public void swimDisplay(){
+		for(int i=10;i<15;i++){
+			System.out.print(i+1+"]  ");
+		System.out.println(arraylist.get(i).getProductName()+" :: $"+arraylist.get(i).getProductPrice());	
+		}
+	}
+	public void netDisplay(){
+		for(int i=15;i<20;i++){
+		System.out.print(i+1+"]  ");
+		System.out.println(arraylist.get(i).getProductName()+" :: $"+arraylist.get(i).getProductPrice());	
+		}
+	}
+	public void hockeyDisplay(){
+		for(int i=20;i<24;i++){
+		System.out.print(i+1+"] ");
+		System.out.println(arraylist.get(i).getProductName()+" :: $"+arraylist.get(i).getProductPrice());	
+		}
+	}
+
+public ArrayList<Supplier> getSupplierList(){
+	Supplier Kookaburra =new Supplier("Kookaburra","Joseph","8129704723","China","1");                 
+	Supplier AdidasIncurza =new Supplier("AdidasIncurza","John","8129712334","Sri Lanka","2");
+	Supplier GrayNicollsViper =new Supplier("GrayNicollsViper","Jacob","1234567890","Pakistan","3");
+	Supplier MooreIcon =new Supplier("MooreIcon","Jhoney","9876544321","South Africa","4");
+	Supplier GMIcon =new Supplier("KookabGMIconurra","Arya","8129704723","America","5");
+	Supplier mrf =new Supplier("mrf","Joseph","6543789765","Southamerica","6");
+	Supplier nike =new Supplier("nike","seby","3142536475","Africa","7");
+	Supplier wildcraft =new Supplier("wildcraft","seby","3142536475","India","8");
+	Supplier IBM =new Supplier("IBM","Swati","9873458762","Australia","9");
+	Supplier Speridian =new Supplier("Speridian","Riya","9871234569","India","10");
+
+    arraylist3.add(Kookaburra);
+	arraylist3.add(AdidasIncurza);
+	arraylist3.add(GrayNicollsViper);
+	arraylist3.add(MooreIcon);
+	arraylist3.add(GMIcon);
+	arraylist3.add(mrf);
+	arraylist3.add(nike);
+	arraylist3.add(wildcraft);
+	arraylist3.add(IBM);
+	arraylist3.add(Speridian);
+
+	return arraylist3;
+	
+}
+public void supplierDisplay(){
+	for(int i=0;i<arraylist3.size();i++){
+		System.out.print(i+1+" ");
+		System.out.print("Name of Supplier is ");
+		System.out.println(arraylist3.get(i).getName());
+		System.out.print("Mobile no is ");
+		System.out.println(arraylist3.get(i).getMobno());
+		System.out.println("\n");
+	}
+		
+	
+}
+Customer cc=new Customer();
+
+public void searchId(){
+	Database or=new Database();
+	ArrayList<Products> ps=or.getProductList();
+	System.out.println("Enter id of product");
+	int u=sc.nextInt();
+
+	for (Products id: ps) {
+		if(i==u){
+			int ids=ps.get(i-1).getProductID();
+			String proname = ps.get(i-1).getProductName();
+			System.out.println("The Product Id:"+ids + "      " +"The Product Name is:"+ proname);
+			break;
+		}
+		i++;
+	}
+	System.out.println("***** PRESS 1 TO GO BACK *****");
+	int n=sc.nextInt();
+	if(n==1){
+		cc.method();
+	}
+}
+public void searchName(){
+	Database or=new Database();
+	ArrayList<Products> arraylist=or.getProductList();
+	int flag =0;
+	System.out.println("Enter Name of product");
+	String na=sc.nextLine();
+	String ds;
+	
+
+	for(int i=0;i<5;i++){
+		if((na).equals(arraylist.get(i).getProductName().toString())){
+			System.out.println("Product found is "+ arraylist.get(i).getProductName().toString());
+			flag=1;
+			break;
+		}
+		else{
+			flag =0;	
+		    }
+		
+	}
+	if(flag==1)
+	{
+	
+	}
+	else{
+		System.out.println("Item Not Found, Please try again");
+	}
+	System.out.println("***** PRESS 1 TO GO BACK *****");
+	int n=sc.nextInt();
+	if(n==1){
+		cc.method();
+	}
+}
+public void managerOrder(){
+	System.out.println("===== SELECT PRODUCT YOU WANT TO RE-ORDER =====");
+	int a=sc.nextInt();
+	try{
+	FileWriter outFile = new FileWriter("C:/Users/ASHISH/Desktop/seff/REORDER.txt",true);
+    BufferedWriter outStream = new BufferedWriter(outFile);
+	for(i=0;i<arraylist.size();i++){
+		if(i==a){
+			System.out.println("***** YOU SELECTED "+arraylist.get(a).getProductName()+" *****");
+			System.out.println("===== ENTER QUANTITY =====");
+			int qt=sc.nextInt();
+			arraylist.get(a).setStock(qt);
+			  outStream.write(arraylist.get(a).getProductName()); 
+	            outStream.write(" --------- ");
+	            outStream.write(String.valueOf(qt));
+	            outStream.write("\n");
+	            outStream.close();
+			System.out.println(" ===== ORDERING IS COMPLETED =====");
+		}
+			}
+	}
+			catch(IOException e){
+				System.out.println("SOMETHING WENT WRONG .....PLEASE TRY AGAIN LATER");
+			}
+		
+}
+		
+	
+ArrayList<Database> disc1=new ArrayList<Database>();
+public void mDiscount(){
+	System.out.println("===== HOW MUCH DISCOUNT YOU WANT TO GIVE =====");
+	
+	
+}
+
+public void looptime(int selection,String productname,int qunat,int prices){
+	Database or=new Database();
+	ArrayList<Products> ps=or.getProductList();
+	int numm=selection-1;
+	
+	int q=qunat;
+	int pric=prices;
+	for (Products strng: ps) {
+		if(i==numm){
+			String gg=strng.getProductName().toString() ;
+			Custselec string= new Custselec(gg, q,pric,0);
+			cs=sp.getCs();
+			cs.add(string);
+			map.put(transID, string);
+			for (int ID : map.keySet()) {
+				System.out.println(ID);
+				Custselec yo=map.get(ID);
+				System.out.println(yo.getSelecProd());
+			}
+			transID++;
+			break;
+		}
+		i++;
+	}
+}
+
+public static List<Custselec> getCs() {
+	return cs;
+}
+
+public static void setCs(List<Custselec> cs) {
+	Database.cs = cs;
+}
+
+public int reciept()
+{
+	Database or=new Database();
+	ArrayList<Products> ps=or.getProductList();
+	Transcation ts=new Transcation();
+	int sum=0;
+	int i=0;
+	int val1 = 0;
+	int userselec1 =0;
+	for( i=0;i<cs.size();i++)
+	{
+
+		int numberofqunat = cs.get(i).getselecquant();	
+		System.out.println("_____________________________________");
+		System.out.print("The Item "+(i+1)+": "+ cs.get(i).getSelecProd()+ "    ");
+		System.out.print("Quantity: "+numberofqunat+" " );
+		System.out.print("Price: "+ cs.get(i).getProductPrice()+ "  " );
+		
+		if(numberofqunat>=5){
+			userselec1=i;
+			
+		 disc=ts.offers(userselec1,numberofqunat,cs);
+		 
+		 val1= (numberofqunat * cs.get(userselec1).getProductPrice()) - disc;
+			}
+			else{
+				val1= numberofqunat * cs.get(userselec1).getProductPrice();
+			}
+		System.out.println("");	
+		sum=sum+val1;
+	}
+	
+	System.out.println("_____________________________________");
+	System.out.println("The total payment is : "+sum );
+	ab=ts.fpoints(sum);
+	return sum;
+}
+ public int total(){
+	 Database or=new Database();
+		ArrayList<Products> ps=or.getProductList();
+		
+		int sum=0;
+		for(int i=0;i<cs.size();i++)
+		{
+			int val1= cs.get(i).getselecquant() * ps.get(i).getProductPrice();
+			sum=sum+val1;
+		}
+		return sum;
+ }
+ public void checkout(){
+	 Database or=new Database();
+		ArrayList<Products> ps=or.getProductList();
+		Transcation ts=new Transcation();
+		int sum=0;
+		int i=0;
+		int val1 = 0;
+		int userselec1 =0;
+		for( i=0;i<cs.size();i++)
+		{
+			int numberofqunat = cs.get(i).getselecquant();
+			if(numberofqunat>=5){
+				userselec1=i;
+				
+			 disc=ts.offers(userselec1,numberofqunat,cs);
+			 
+			 val1= (numberofqunat * cs.get(userselec1).getProductPrice()) - disc;
+				}
+				else{
+					val1= numberofqunat * cs.get(userselec1).getProductPrice();
+				}
+			System.out.println("");
+			sum=sum+val1;
+		}
+		ab=ts.fpoints(sum);
+		for( i=0;i<cs.size();i++)
+		{
+			System.out.println("________________________________________________");
+			System.out.println(" Item           Quantity  ");
+			System.out.println("\nItem "+ (i+1) + ": "+ cs.get(i).getSelecProd());
+			System.out.print("\nQuantity : "+ cs.get(i).getselecquant());
+			System.out.print("\nPrice : "+ (cs.get(i).getProductPrice()));
+		}
+		System.out.println("*********************************************************");
+		System.out.println("TOTAL AMOUNT TO BE PAID IS "+ab);
+		
+		try{
+		FileWriter outFile = new FileWriter("C:/Users/ASHISH/Desktop/seff/SEF.txt",true);
+        BufferedWriter outStream = new BufferedWriter(outFile);
+        for( i=0;i<cs.size();i++){
+            outStream.write(cs.get(i).getSelecProd()); 
+            outStream.write(":: ");
+            outStream.write(String.valueOf(cs.get(i).getselecquant()));
+            outStream.newLine();
+        }
+        outStream.write(" ===== ");
+        outStream.write("Total amount is "+ab);
+        outStream.newLine();
+        outStream.close();
+		}
+		catch(IOException e){
+			System.out.println("SOMETHING WENT WRONG .....PLEASE TRY AGAIN LATER");
+		}
+		try{
+			 int ran=random();
+			for(int k=0;k<20;k++){
+				if(ran == k){
+					random();
+				}
+			
+			else{
+			FileWriter outFile = new FileWriter("C:/Users/ASHISH/Desktop/sef/"+ran+".txt");
+			}
+	       FileWriter outFile = new FileWriter("C:/Users/ASHISH/Desktop/sef/"+ran+".txt");
+			BufferedWriter outStream1 = new BufferedWriter(outFile);
+	        for( i=0;i<cs.size();i++){
+	            outStream1.write(cs.get(i).getSelecProd()); 
+	            outStream1.write(":: ");
+	            outStream1.write(String.valueOf(cs.get(i).getselecquant()));
+	            outStream1.newLine();
+	        }
+	        outStream1.write(" ===== ");
+	        outStream1.write("Total amount is "+ab);
+	        outStream1.newLine();
+	        outStream1.close();
+			
+			}
+			
+		}
+		catch(IOException e){
+			System.out.println("SOMETHING WENT WRONG .....PLEASE TRY AGAIN LATER");
+		}
+ }
+
+public int getTotalsum() {
+	return totalsum;
+}
+public void getDiscount(){
+	double discount=0;
+	Transcation ts=new Transcation();
+	double val=ts.managerDiscount();
+	for(int i=0;i<cs.size();i++){
+		if(cs.get(i).getselecquant() > 5 && cs.get(i).getselecquant() < 10){
+			System.out.println("====== YOU GOT "+val+" % DISCOUNT ====="+" ON "+cs.get(i).getSelecProd());
+		}
+		else if(cs.get(i).getselecquant() > 10 && cs.get(i).getselecquant()<15){
+			System.out.println("====== YOU GOT "+(val+0.1)+" % DISCOUNT ====="+" ON "+cs.get(i).getSelecProd());
+		}
+		else if(cs.get(i).getselecquant() > 15 && cs.get(i).getselecquant()< 20){
+			System.out.println("====== YOU GOT "+(val+0.2)+" % DISCOUNT ====="+" ON "+cs.get(i).getSelecProd());
+		}
+	}
+	System.out.println("===== PRESS ANY KEY TO RETURN BACK =====");
+	int input=sc.nextInt();
+	if(input == 1){
+		cc.method();
+	}
+
+}
+public int random(){
+	Random rand=new Random();
+	int files=rand.nextInt(20)+1;
+	return files;
+}
+
+}
+
+
+
+
+CUTSELECT CLASS
+
+import java.util.ArrayList;
+import java.util.List;
+public  class Custselec {
+
+	public String selecprod;
+	public int selecquant;
+	public int price;
+	public int stock;
+    public static List<Custselec> cs=new ArrayList<Custselec>();
+	public Custselec(String selecprodname,int selecquantno,int pprice,int sstock) {
+		selecprod = selecprodname;
+		price=pprice;
+		this.selecquant=selecquantno;
+		stock=sstock;
+	}
+
+	public String getSelecProd(){
+		return this.selecprod;
+	}
+
+	public void setSelecprod(String selecprod) {
+		this.selecprod = selecprod;
+	}
+	public int getselecquant(){
+		return this.selecquant;
+	}
+
+	public void setSelecprodPrice(int pprice) {
+		this.price = pprice;
+	}
+	public int getProductPrice(){
+		return this.price;
+	}
+	public void setStock(int sstock) {
+		this.stock = sstock;
+	}
+	public int getStock(){
+		return this.stock;
+	}
+}
+
+
+CUSTOMER CLASS
+
+import java.util.Scanner;
+
+public class Customer {
+	Scanner sc=new Scanner(System.in);
+		public void clogin(){
+			System.out.println("Enter username");
+		
+			String userInput=sc.next();
+			System.out.println("Enter Password");
+			String userpassword=sc.next();
+			
+			if(userInput.equals("ASHISH") && userpassword.equals("ASHISH10211")){
+		method();
+			}
+			else if(userInput.equals("SEBY") && userpassword.equals("TOM")){
+				Sports a=new Sports();
+				a.sportsitem();
+				
+			}
+			else if(userInput.equals("VINEETH") && userpassword.equals("vineeth15"))
+			{
+				Sports a=new Sports();
+				a.sportsitem();
+				
+			}
+			else{
+				System.out.println("You are not authorised person");
+			}
+			
+			
+		
+		}
+		public void choice(){
+			
+			System.out.println("Enter the quantity of product");
+			int qt=sc.nextInt();
+		}
+		public void method(){
+			System.out.println("_____________________________________");
+			System.out.println("===== SELECT WHAT YOU WANT TO DO ===== \n"
+					+ "PRESS 1 TO SEARCH PRODUCT BY ID \n"
+					+ "PRESS 2 TO SEARCH PRODUCT NY NAME \n"
+					+ "PRESS ANY OTHER NUMBER TO SELECT PRODUCTS \n");
+			System.out.println("_____________________________________");
+			int us=sc.nextInt();
+			Database or=new Database();
+			if(us==1){
+				
+				or.searchId();
+			}
+			else if(us==2){
+				or.searchName();
+			}
+			else{
+				Sports a=new Sports();
+				a.sportsitem();
+			}
+			
+		}
+}
+
+
+LOGIN CLASS
+
+
+import java.io.IOException;
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Login {
+public static void main(String args[] ) throws IOException
+{
+	System.out.println("_____________________________________\n");
+	System.out.println("PLEASE SELECT WHAT KIND OF USER YOU ARE\n  \n [1] CUSTOMER \n [2] MANAGER \n [3] SALES STAFF \n [4] WAREHOUSE");
+	System.out.println("_____________________________________");
+	Scanner sc=new Scanner(System.in);
+	int input=sc.nextInt();
+	switch(input)
+	{
+	case 1:
+		System.out.println("===== HELLO CUSTOMER PLEASE PROCEED HERE =====");
+		Customer obj=new Customer();
+		obj.clogin();
+		break;
+	case 2:
+		System.out.println("===== HELLO MANAGER PLEASE PROCEED HERE =====");
+		Manager m=new Manager();
+		m.mlogin();
+		break;
+	case 3:
+		System.out.println("===== HELLO SALES STAFF PLEASE PROCEED HERE =====");
+		Sales obj2=new Sales();
+		obj2.slogin();
+		break;
+	case 4:
+		System.out.println("===== HELLO WAREHOUSE STAFF PLEASE PROCEED HERE =====");
+		WarehouseStaff obj3=new WarehouseStaff();
+		obj3.wlogin();
+		break;
+		
+	}
+}
+
+	
+}
+
+
+
+
+
+
+MANAGER CLASS
+	
+	
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Manager {
+	
+	public static void main(String [] args){
+	}
+	Scanner sc=new Scanner(System.in);
+	
+	public void mlogin(){
+		Manager m=new Manager();
+		System.out.println("Enter username");
+		Scanner sc=new Scanner(System.in);
+		String userInput=sc.next();
+		System.out.println("Enter Password");
+		String userpassword=sc.next();
+		
+		if(userInput.equals("ASHISH") && userpassword.equals("ASHISH10211")){
+			
+			m.mdisplay();
+			
+		}
+		else
+		{
+			System.out.println("SORRY WRONG USERNAME AND PASSWORD");
+		}
+	}
+	Database or=new Database();
+	ArrayList<Products> ps=or.getProductList();
+		
+	
+	public void mdisplay(){
+		Manager mn=new Manager();
+		System.out.println(" ====== ENTER WHAT YOU WANT TO DO =====");
+		System.out.println("___________________________________________\n");
+		System.out.print("|");
+		System.out.println("[1] UNIT PRICE");
+		System.out.print("|");
+		System.out.println("[2] STOCK LEVEL");
+		System.out.print("|");
+		System.out.println("[3] RE-ORDER");
+		System.out.print("|");
+		System.out.println("[4] SALES REPORT");
+		System.out.print("|");
+		System.out.println("[5] SUPPLIER DETAILS");
+		System.out.print("|");
+		System.out.println("[6] OFFER DISCOUNT");
+		System.out.print("|");
+		System.out.println("[7] AUTOMATIC STOCK UPDATE");
+		System.out.print("");
+		System.out.println("____________________________________________");
+	
+	int input=sc.nextInt();
+	switch(input){
+	case 1:
+	   or.prodDisplay();
+		mn.changePrice();
+		
+	break;
+	case 2:
+		or.prodDisplay();
+		mn.stockdisplay();
+		break;
+	case 3:
+		or.prodDisplay();
+		or.managerOrder();
+		break;
+	case 4:
+		System.out.println("===== PRESS 1 TO SEE THE SALES REPORT =====");
+         int a=sc.nextInt();
+          if(a==1){
+        	  System.out.println("_________________________________\n");
+		 BufferedReader br = null;
+
+	        try {
+
+	            String sCurrentLine;
+
+	            br = new BufferedReader(new FileReader("C:/Users/ASHISH/Desktop/seff/SEF.txt"));
+
+	            while ((sCurrentLine = br.readLine()) != null) {
+	                System.out.println(sCurrentLine);
+	            }
+	            System.out.println("_________________________________\n");
+
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        } finally {
+	            try {
+	                if (br != null)br.close();
+	            } catch (IOException ex) {
+	                ex.printStackTrace();
+	            }
+	        }}
+          else{
+        	  
+          }
+		break;
+	case 5:
+		System.out.println("===== PRESS 1 TO SEE SUPPLIER DETAILS =====");
+		int s=sc.nextInt();
+		if(s==1){
+			 System.out.println("_________________________________\n");
+			or.getSupplierList();
+			or.supplierDisplay();
+			 System.out.println("_________________________________\n");
+		}
+		else{
+			System.out.println("Supplier list not found");
+		}
+		break;
+	case 6:
+
+		try{
+		FileWriter outFile = new FileWriter("C:/Users/ASHISH/Desktop/DISCOUNT.txt");
+        BufferedWriter outStream = new BufferedWriter(outFile);
+        System.out.println("===== SELECT DISCOUNT YOU WANT TO GIVE =====");
+        int di=sc.nextInt();
+        outStream.write(String.valueOf(di));
+        outStream.close();
+		}
+		catch(IOException e){
+			System.out.println("SOMETHING WENT WRONG .....PLEASE TRY AGAIN LATER");
+		}
+		break;
+	case 7:
+		or.prodDisplay();
+		mn.aOrder();
+		break;
+	}
+
+	System.out.println("\n======== CLICK 0 TO CONTINUE HERE ======== ");
+	System.out.println("\n======== CLICK 1 TO GO BACK TO SELECTION ======== ");
+	System.out.println("\n ======== CLICK 2 TO EXIT ========");
+	int us=sc.nextInt();
+	if(us==0){
+		mn.stockdisplay();
+	}
+	else if(us==1){
+		mn.mdisplay();
+	}
+	else{
+		//exit();
+	}
+	}
+	public void stockdisplay(){
+	
+		System.out.println("***** SELECT THE PRODUCT YOU WANT STOCK OF *****");
+		int u=sc.nextInt();
+		 System.out.println("_________________________________\n");
+		System.out.println("STOCK OF "+ps.get(u-1).getProductName()+" IS "+ps.get(u-1).getStock());
+		 System.out.println("_________________________________\n");
+	}
+	
+	public void changePrice(){
+		int i;
+		System.out.println("***** SELECT THE PRODUCT WHOSE PRICE YOU WANT TO UPDATE *****\n");
+		int us=sc.nextInt();
+		 System.out.println("_________________________________\n");
+        System.out.println("CURRENT PRICE OF  "+ps.get(us-1).getProductName()+" IS "+ps.get(us-1).getProductPrice());
+		System.out.println("ENTER THE PRICE YOU WANT");
+		int pr=sc.nextInt();
+		ps.get(us-1).setProductPrice(pr);
+		for(i=0;i<ps.size();i++){
+			if(ps.get(i).pname.equals(ps.get(us-1).getProductName())){
+			//ps.set(i,pr);
+			}
+		}
+		System.out.println("UPDATES PRICE OF  "+ps.get(us-1).getProductName()+" IS "+ps.get(us-1).getProductPrice());
+		 System.out.println("_________________________________\n");
+	}
+	
+	
+	public void aOrder(){
+		System.out.println("***** SELECT THE PRODUCT WHOSE STOCK YOU WANT TO UPDATE *****");
+		int n=sc.nextInt();
+		 System.out.println("_________________________________\n");
+		System.out.println("CURRENT STOCK OF"+ps.get(n-1).getProductName()+" IS "+ps.get(n-1).getStock());
+		System.out.println("***** PRESS 1 TO AUTOMATIC UPDATE THE STOCK *****");
+		int u=sc.nextInt();
+		ps.get(u-1).setStock(10);
+		System.out.println("UPDATED STOCK OF"+ps.get(n-1).getProductName()+" IS "+ps.get(n-1).getStock());
+		 System.out.println("_________________________________\n");
+	}
+}
+
+
+
+SALES CLASS
+
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
+public class Sales {
+	public void slogin() throws IOException{
+		System.out.println("Enter username");
+		Scanner sc=new Scanner(System.in);
+		String userInput=sc.next();
+		System.out.println("Enter Password");
+		String userpassword=sc.next();
+		
+		if(userInput.equals("ASHISH") && userpassword.equals("ASHISH10211")){
+			
+			
+			System.out.println("========= HERE IS THE LIST OF TRANSCATIONS =====");
+			
+			 File folder = new File("C:/Users/ASHISH/Desktop/sef");
+			 File[] listOfFiles = folder.listFiles();
+			 System.out.println("_________________________________\n");
+			int flag=0;
+			 for (File file : listOfFiles) {
+				 FileReader read=new FileReader(file);
+				 BufferedReader br=new BufferedReader(read);
+				 String s=null;
+				 while((s=br.readLine())!=null){
+					 if(flag ==0){
+						 System.out.println(file.getName());
+						 System.out.println("\n");
+						 System.out.println(s);
+						 flag++;
+					 }
+					 else{
+					 System.out.println(s);
+					 System.out.println("\n");
+					 }
+				 }	
+				 br.close();
+				
+			 }
+			 
+			 System.out.println("_________________________________\n");
+			 System.out.println("===== ENTER THE TRANSCATION NUMBER YOU LIKE TO DELETE =====");
+			 int a=sc.nextInt();
+			 for (File file : listOfFiles) {
+				 String ab=file.getName().replaceAll(".txt", "");
+				 ab=ab.trim();
+				 if(ab.equals(String.valueOf(a))){
+ 					 if(file.delete()){
+			    			System.out.println(ab+ " is deleted!");
+			    		}else{
+			    			System.out.println("Delete operation is failed.");
+			    		}
+					 System.out.println("===== "+file.getName()+" TRANSCATION DELETED SUCCESFULLY =====");
+				 }
+				
+			 }
+				
+		}
+
+		
+	
+	}
+}
+
+
+SPORTS CLASS
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Sports {
+	public static void main(String[] args){
+
+}
+ public List<Custselec> getCs() {
+		return cs;
+	}
+	public void setCs(List<Custselec> cs) {
+		this.cs = cs;
+	}
+ArrayList<String> iname=new ArrayList<String>();    
+ public List<Custselec> cs=new ArrayList<Custselec>();
+
+	public static Database or=new Database();
+	public int total;
+	Scanner sc=new Scanner(System.in);
+	public void sportsitem(){
+		System.out.println("_______________________________________________________");
+		System.out.println("******** LIST OF SPORTS ******** ");
+		System.out.println("\n [1] CRICKET \n [2] AUSTRALIAN FOOTBALL "
+				+ "\n [3] SWIMMING \n [4]  NETBALL \n [5]  HOCKEY\n");
+	    System.out.println(" *****PLEASE SELECT THE SPORTS ***** ");
+	    System.out.println("_______________________________________________________");
+		int choice=sc.nextInt();
+		ArrayList<Products> ps=or.getProductList();
+		switch(choice){
+		case 1:
+			System.out.println("\n ***** You selected Cricket :- now you can choose items you want*****");
+		
+		    or.cricDisplay();
+					method();
+	         break;
+		case 2:
+			System.out.println("\n ********You selected Australian Rules Football :- now you can choose items you want********");
+		    or.footDisplay();
+		    method();
+			break;
+		case 3:
+			System.out.println("\n ********You selected Swimming :- now you can choose items you want*******");
+			or.swimDisplay();
+			method();
+			break;
+		case 4:
+			System.out.println("\n ********You selected Netball :- now you can choose items you want********");
+			or.netDisplay();
+			method();
+			break;
+		case 5:
+			System.out.println("\n ********You selected Hockey :- now you can choose items you want********");
+			or.hockeyDisplay();
+			method();
+			break;
+		}
+	}
+	public void method(){
+		ArrayList<Products> ps=or.getProductList();
+		System.out.println("\n ***** SELECT THE PRODUCT YOU WANT *****");
+		int us=sc.nextInt();
+	    System.out.println(" choice is "+ps.get(us-1).getProductName());
+	    
+	String g=ps.get(us-1).getProductName().toString() ;
+
+		System.out.println("\n ***** ENTER THE QUANTITY OF PRODUCT *****");
+		int qt=sc.nextInt();
+		int price1=ps.get(us-1).getProductPrice();
+		or.looptime(us,g,qt,price1);
+		
+		if(ps.get(us-1).pstock>qt){
+			
+			for(int j=0;j<2;j++){
+				iname.add(j,ps.get(us-1).getProductName());
+			}
+			
+			System.out.println("_______________________________________________________");
+			ps.get(us-1).pstock=ps.get(us-1).pstock-qt;
+			System.out.println("\n ========= STOCK AVAILABLE IS  "+ps.get(us-1).pstock+" ==========");
+			System.out.println("\n ========== [1] CLICK 1 TO CONTINUE HERE ==========");
+			System.out.println("\n ========== [2] CLICK 2 TO SEE PRODUCT ADDED ==========");
+			System.out.println("\n ========= [3] CLICK 3 TO SEE DISCOUNT APPLIED ==========");
+			System.out.println("\n ========== [4] CLICK 4 TO PROCEED TO TRANSCATION =========");
+			System.out.println("_______________________________________________________");
+			int num=sc.nextInt();
+			
+			if(num==1){
+				sportsitem();	
+			}
+			
+			else if(num==2){
+				or.reciept();
+																						
+			}
+			
+			else  if(num==3){
+				or.getDiscount();
+			}
+			else if(num==4){
+				or.checkout();
+			}
+			
+		}
+		else{
+			System.out.println("\n *****Not enough stock . Try again later*****");
+		}
+	}
+	
+
+}
+
+SUPPLIER CLASS
+
+
+public class Supplier {
+	private String name;
+	private String person;
+	private String mobNo;
+	private String address;
+	private String prodId;
+	
+    
+	public Supplier(String theName,String thePerson,String theMobno,String theAddress,String theProdid)
+	{
+		name=theName;
+		person=thePerson;
+		mobNo=theMobno;
+		address=theAddress;
+		prodId=theProdid;
+		
+	}
+	
+	public String getName()
+	{
+		return this.name;
+	}
+	
+	public String getPerson()
+	{
+		return this.person;
+	}
+	public String getMobno()
+	{
+		return this.mobNo;
+	}
+	
+	public String getAddress()
+	{
+		return this.address;
+	}
+	public String getProdid()
+	{
+		return this.prodId;
+	}
+}
+
+
+TRANSCATION CLASS
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
+
+public class Transcation {
+
+	ArrayList<Products> ps=new ArrayList<Products>();
+	Database d=new Database();
+	public List<Custselec> cs=new ArrayList<Custselec>();
+	int tol;
+	public int random(){
+	Random rand=new Random();
+	int ran=rand.nextInt(40);
+	return ran;
+	}
+	public int fpoints(int tot){
+		Database or=new Database();
+		int amount=tot;
+		int same=amount;
+		System.out.println(amount);
+		int dis;
+		int point =random();
+		int finalPoints;
+		int npoint=0;
+		if(amount>10){
+			 npoint=amount/10;
+		}
+		System.out.println("_______________________________________________________________________");
+		System.out.println("\n===== YOU ARE GETTING  "+npoint+" POINTS FOR THIS TRANSCATION =====");
+		System.out.println(" ===== AVAILABLE POINTS ARE :"+ point+" =====");
+		System.out.println("TOTAL POINTS TO REDEEM "+ (npoint+point));
+	    System.out.println("\n Do you want to use Your points for this transcation"
+	   		+ "\n"
+	   		+ "\n"
+	   		+ "*******1) PRESS 1 to REDEMM POINTS*******\n"
+	   		+ "\n"
+	   		+ "*******2) PRESS 2 to CONTINUE TO PAY*******");
+	   Scanner sc=new Scanner(System.in);
+	   int n=sc.nextInt();
+	   System.out.println("_______________________________________________________________________");
+	   switch(n){
+	   case 1:
+		   if((point+npoint) >= 20 || point ==20){
+				   dis=(point/20)*5;
+					 System.out.println(dis);
+					  amount=amount-dis;
+			}
+		   else{
+				System.out.println("Sorry you dont have enought points :- redirecting you to payment");
+				}
+		   System.out.println("===== NOW THE TOTAL AMOUNT IS ===== "+amount);
+		   break;
+		   
+	   case 2:
+		   System.out.println("===== NO DISCOUNT APPLIED ===== AMOUNT IS ===== "+same);
+		   break;
+	   }
+	   System.out.println("_______________________________________________________________________");
+	   if(amount==same){
+		   return same;
+	   }
+	   else{
+		   return amount;
+	   }
+	   
+	}
+  public int offers(int j,int id,List<Custselec> li){
+	  int userselc=j;
+	  int i=id;
+	 int famount = 0;
+	 double val=managerDiscount();
+
+	  if(i>=5 && i<10){
+		  famount=(int) (li.get(userselc).getProductPrice()*val);
+	  }
+	  else if(i>=10 && i<20){
+		  famount=(int) (li.get(userselc).getProductPrice()*val+0.1);
+	  }
+	  else
+	  {
+		  famount=(int) (li.get(userselc).getProductPrice()*val+0.2);
+	  }
+	  System.out.println(" ");
+	 System.out.println("===== PRICE AFTER BULK DISCOUNT IS =====  :  "+famount);
+	    return famount;
+  }
+
+public double managerDiscount(){
+	double abc=0;
+	BufferedReader br;
+	try {
+		br = new BufferedReader(new FileReader("C:/Users/ASHISH/Desktop/DISCOUNT.txt"));
+		
+	    StringBuilder sb = new StringBuilder();
+	    String line = br.readLine();
+      if(line == null){
+	        abc=0.1;
+              }
+	    else {
+	        double aa=Double.parseDouble(line);
+	        abc=aa/100;
+	    }
+	} catch(IOException e) {
+	    System.out.println("SOMETHING WENT WRONG");
+	}return abc;
+}
+
+}
+
+  
+WAREHOUSE CLASS
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class WarehouseStaff {
+
+	ArrayList<Products> arraylist=new ArrayList<Products>();
+	Scanner sc=new Scanner(System.in);
+	public static List<Custselec> cs;
+public void wlogin(){
+	System.out.println("Enter username");
+	String userInput=sc.next();
+	System.out.println("Enter Password");
+	String userpassword=sc.next();
+
+	
+	if(userInput.equals("ASHISH") && userpassword.equals("ASHISH10211")){
+		WarehouseStaff ws=new WarehouseStaff();
+		ws.wstock();
+	}
+	else
+	{
+		System.out.println("Unauthorised login");
+	}
+}
+public void wstock(){
+	Database or=new Database();
+	ArrayList<Products> ps=or.getProductList();
+	or.prodDisplay();
+	System.out.println("___________________________________________________________");
+	System.out.println("===== SELECT PRODUCT WHOSE STOCK YOU WANT TO CHECK =====\n");
+	int u=sc.nextInt();
+	System.out.println("Stock of "+ps.get(u-1).getProductName()+" is "+ps.get(u-1).getStock());
+	System.out.println("===== ENTER 1 TO PLACE THIS ITEM IN SHELF =====");
+	System.out.println("___________________________________________________________");
+	int b=sc.nextInt();
+	if(b==1){
+	try{
+      FileWriter outFile = new FileWriter("C:/Users/ASHISH/Desktop/seff/warehouse.txt");
+		BufferedWriter outStream1 = new BufferedWriter(outFile);
+       outStream1.write("ITEM PLACED IN SHELF  ");
+       outStream1.write(ps.get(u-1).getProductName());
+       outStream1.write("    ");
+       outStream1.write(String.valueOf(ps.get(u-1).getStock()));
+       outStream1.newLine();
+       outStream1.close();
+		
+		}
+		
+	catch(IOException e){
+		System.out.println("SOMETHING WENT WRONG .....PLEASE TRY AGAIN LATER");
+	}
+	System.out.println("===== ITEM PLACED IN SHELF - CHECK TEXT FILE FOR LOGS =====");
+}
+}
+}
